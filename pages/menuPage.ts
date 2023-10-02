@@ -25,7 +25,7 @@ export default class MenuPage {
     }
 
     async getBasketSize() {
-        let countString = (await this.page.locator(this.PageElements.basketCountLbl).innerText()).valueOf();
+        let countString = (await this.page.innerText(this.PageElements.basketCountLbl)).valueOf();
         let count = parseInt(countString);
         console.log(`There are ${count} goods in basket`);
         return count;
@@ -33,17 +33,17 @@ export default class MenuPage {
 
     async assertItemPrice() {
         let sampleRegEx = new RegExp('[+ 0-9]{3}');
-        let sumString = (await this.page.locator(this.PageElements.basketGoodPriceLbl).innerText()).valueOf();
+        let sumString = (await this.page.innerText(this.PageElements.basketGoodPriceLbl)).valueOf();
         assert.equal(sampleRegEx.test(sumString!), true);
     }
     async assertTitle() {
         let sampleRegEx = new RegExp('[^\u0000-\u007f]');
-        let sumString = (await this.page.locator(this.PageElements.basketGoodTitleLbl).innerText()).valueOf();
+        let sumString = (await this.page.innerText(this.PageElements.basketGoodTitleLbl)).valueOf();
         assert.equal(sampleRegEx.test(sumString!), true);
     }
     async assertTotalAmount(quantityDigits: number) {
         let sampleRegEx = new RegExp(`[+ 0-9]{${quantityDigits}}`);
-        let sumString = (await this.page.locator(this.PageElements.basketGoodPriceLbl).innerText()).valueOf();
+        let sumString = (await this.page.innerText(this.PageElements.basketGoodPriceLbl)).valueOf();
         assert.equal(sampleRegEx.test(sumString!), true);
     }
     async assertBasketSize(expectedSize: string) {

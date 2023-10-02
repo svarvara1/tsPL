@@ -48,7 +48,7 @@ test("Go to basket with 1 good without discount", async () => {
 })
 
 test("Go to basket with 1 good with discount", async () => {
-    let browser: Browser = await chromium.launch({headless: false});
+    let browser: Browser = await chromium.launch({headless: false, slowMo: 2000});
     const context = await browser.newContext();
     const page = await context.newPage();
     await page.goto(configData.baseUrl);
